@@ -14,6 +14,13 @@ class WithMap(val map: Map<String, Any?>){
     }
 }
 
+class PairExample {
+
+    fun a():Pair<String, String>{
+        return Pair("hola","hola")
+    }
+}
+
 fun main(args: Array<String>) {
     val withMap = WithMap(mapOf(
             "name" to "MyName",
