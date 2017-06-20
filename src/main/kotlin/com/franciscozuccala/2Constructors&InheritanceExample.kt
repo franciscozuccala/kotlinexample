@@ -1,14 +1,14 @@
 package com.franciscozuccala
 
-class User constructor(val dni:Int) : Person(dni), Named{
+class User constructor(val dni:Int, override val someVal: Int) : Person(dni), Named, AnotherNamed{
 
     override fun sayName(): String {
-        TODO()
+        return super<Named>.sayName()
     }
 
-    constructor():this(1)
+    constructor():this(1, 23)
 
-    constructor(dni: Int,name:String):this(dni){
+    constructor(dni: Int, name:String):this(dni, 23){
         this.name = name
     }
 
@@ -23,5 +23,15 @@ class User constructor(val dni:Int) : Person(dni), Named{
 open class Person(var id: Int)
 
 interface Named{
-    fun sayName():String
+    fun sayName():String{
+        return "Name One"
+    }
+}
+
+interface AnotherNamed{
+    val someVal: Int
+
+    fun sayName():String{
+        return "Name Two"
+    }
 }

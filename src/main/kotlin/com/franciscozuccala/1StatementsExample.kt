@@ -38,10 +38,9 @@ class Statements {
     }
 
     fun doStatement(){
-        val myCondition:Boolean = true
+        var myCondition:Boolean = true
         do {
-            (myCondition && false) || true
-            myCondition.and(false).or(true)
+            myCondition = myCondition.and(false).or(true)
         }while (myCondition)
     }
 

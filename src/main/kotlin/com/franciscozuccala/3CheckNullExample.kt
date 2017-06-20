@@ -14,4 +14,6 @@ fun main(args: Array<String>) {
     commonClass.giveMeAnotherCommonClass()!!.name
 
     var nameOfCommon = commonClass.giveMeAnotherCommonClass()?.name ?: "Default"
+
+    //var nameOfCommon = commonClass.giveMeAnotherCommonClass()?.name?.let {  }
 }

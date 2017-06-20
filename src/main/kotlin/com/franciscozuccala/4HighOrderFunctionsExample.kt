@@ -2,33 +2,6 @@ package com.franciscozuccala
 
 class FunctionClass {
 
-    fun letExample(id: Int = 32) {
-        val user = User()
-        user.let {
-            it.id = id
-            it.name = "Name"
-        }
-
-        val listWithNulls: List<String?> = listOf("A", null)
-
-        //Tambien recorre nulls
-        for (item in listWithNulls) {
-            //como puede pasar por nulls es necesario el checkeo
-            //igual, los nulls permiten ejecutar la funcion let
-            item?.let { println(it) }
-        }
-
-        for (item in listWithNulls.filter { it != null }) {
-            item.let { println(it + " ") }
-        }
-
-        //Esto tira una excepcion si encuentra un null
-        for (item in listWithNulls.requireNoNulls()) {
-            println(item)
-        }
-
-    }
-
     inline fun highOrderFunction(body:() -> Unit): Boolean{
         try{
             body()
