@@ -13,6 +13,9 @@ object AnObject{
 fun main(args: Array<String>) {
     val obj = AnObject
 
+    AnObject.run {
+        someValue = 32
+    }
 
     //Permite utilizar el objeto dentro de el scope del let, para no generar variables auxiliares
     //asi como tambien para ejecutar algo si obj no es null

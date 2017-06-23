@@ -1,6 +1,6 @@
 package com.franciscozuccala
 
-open class User constructor(val dni:Int, override val someVal: Int) : Person(dni), Named, AnotherNamed{
+open class User constructor(val dni:Int = 32, override val someVal: Int) : Person(dni), Named, AnotherNamed{
 
     override fun sayName(): String {
         return super<Named>.sayName()
@@ -28,6 +28,10 @@ open class Person(var id: Int){
     open fun sayBye():String{
         return "Bye"
     }
+
+    fun a(name:String = "hola"){
+        id
+    }
 }
 
 interface Named{
@@ -42,4 +46,22 @@ interface AnotherNamed{
     fun sayName():String{
         return "Name Two"
     }
+}
+
+class Outer{
+    class Nested{
+        fun sayHi()="hola"
+    }
+
+    inner class Inner{
+        fun pepe(){
+            this@Outer
+        }
+        fun sayHi()="hola"
+    }
+}
+
+fun main(args: Array<String>) {
+    Outer.Nested().sayHi()
+    Outer().Inner().sayHi()
 }

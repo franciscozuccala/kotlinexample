@@ -12,7 +12,9 @@ class Statements {
     }
 
     fun forStatements(){
-        for (each:String in arrayListOf<String>("String")){
+        listOf("hola","hola")
+
+        for (each in arrayListOf<String>("String")){
 
         }
 

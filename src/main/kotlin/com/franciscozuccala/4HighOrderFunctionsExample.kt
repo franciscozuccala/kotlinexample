@@ -26,6 +26,10 @@ class FunctionClass {
     fun highOrderFunctionWithParams(param: String, body:(String)->String): String{
         return body(param)
     }
+
+    fun read(b: Array<Byte>, off: Int = 0, len: Int = b.size) {
+        TODO()
+    }
 }
 
 fun main(args: Array<String>) {

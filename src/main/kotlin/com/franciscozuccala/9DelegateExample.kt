@@ -9,9 +9,12 @@ class DelegateExample {
     }
 
     //Si se intenta de leer sin ser instanciado, tira una excepcion
-    val number:Int by Delegates.notNull<Int>()
+    var number:Int by Delegates.notNull<Int>()
 
-    val anotherNumber:Int by lazy { 32 }
+    val anotherNumber:Int by lazy {
+        println("computed")
+        23
+    }
 
     var myString by CustomDelegate()
 
@@ -19,11 +22,11 @@ class DelegateExample {
     //en si
     class CustomDelegate {
         operator fun getValue(thisRef: DelegateExample, property: KProperty<*>): String?{
-            return thisRef.myString
+            return "Hola"
         }
 
         operator fun setValue(thisRef: DelegateExample, property: KProperty<*>, value: String?) {
-            thisRef.myString = value
+
         }
     }
 
@@ -31,7 +34,11 @@ class DelegateExample {
 fun main(args: Array<String>) {
     val example: DelegateExample = DelegateExample()
 
-    example.commonString = "Hola"
+    println(example.anotherNumber)
+    println(example.anotherNumber)
 
-    example.commonString = "NO"
+
+    println(example.myString)
+    example.myString = "hola"
+    println(example.myString)
 }

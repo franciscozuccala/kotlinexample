@@ -11,9 +11,14 @@ annotation class MyAnnotation
 class HaveFunWithError{
 
     @Throws(Error::class)
-    fun throwAnError(){
+    fun throwAnError(): Nothing{
         throw Error("This is an error")
     }
+}
+
+fun main(args: Array<String>) {
+    HaveFunWithError().throwAnError()
+
 }
 
 

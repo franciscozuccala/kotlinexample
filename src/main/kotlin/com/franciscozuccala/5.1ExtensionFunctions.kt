@@ -2,6 +2,8 @@ package com.franciscozuccala
 
 class ExtensionFunctions{
 
+    val si = "hola"
+
     //Extension properties
     val <T> List<T>.lastIndex:Int
         get() = size - 1
@@ -19,7 +21,7 @@ class ExtensionFunctions{
 
 
     fun <T:Named> protocolFunction(param:T): String?{
-        return  (param + HaveName("Hola")).sayName()
+        return  (param plus HaveName("Hola")).sayName()
     }
 }
 
@@ -29,8 +31,15 @@ class HaveName(val name : String) : Named{
     }
 }
 
-fun <T>List<T>.lambdaWithReceiver(body: List<T>.() -> Unit){
-    body()
+fun ExtensionFunctions.hola(){
+
+}
+
+fun <T>List<T>.lambdaWithReceiver(body: (List<T>) -> Unit){
+    body(this)
+}
+
+fun hola(body: (ExtensionFunctions)->Unit){
 }
 
 var ExtensionFunctions.myVar: Int
@@ -39,6 +48,7 @@ var ExtensionFunctions.myVar: Int
 
 fun main(args: Array<String>) {
     val letFunctions = ExtensionFunctions()
+    letFunctions.hola()
 
     val name: String = "name"
     println(letFunctions.protocolFunction(HaveName(name))?.let {
@@ -46,7 +56,10 @@ fun main(args: Array<String>) {
     } ?: "user not found")
 
     val list = mutableListOf("arg1","arg2")
+
+    list.lastIndex
+
     list.lambdaWithReceiver {
-        listIterator()
+        it.indexOf("hola")
     }
 }
