@@ -28,6 +28,10 @@ class Statements {
 
         }
 
+        for (i in 20 downTo 10 step 2){
+
+        }
+
     }
 
     fun whileStatement(){
@@ -48,6 +52,7 @@ class Statements {
         when (id){
             2 -> return User(2, "Nombre2")
             3 -> return User(3, "Nombre3")
+            4,5 -> return User(4, "Nombres")
             else -> return null
         }
     }

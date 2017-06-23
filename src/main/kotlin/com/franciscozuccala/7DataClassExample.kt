@@ -1,6 +1,9 @@
 import com.fasterxml.jackson.annotation.JsonProperty
 
 class DataClassExample {
+    //Checkear la visibilidad, son 4
+    internal val myInternalVal = "hola"
+
     val dat = DataClass("Pepe",13)
 
     fun modifyDat(){

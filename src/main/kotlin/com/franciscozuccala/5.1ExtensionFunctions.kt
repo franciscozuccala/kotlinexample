@@ -2,6 +2,10 @@ package com.franciscozuccala
 
 class ExtensionFunctions{
 
+    //Extension properties
+    val <T> List<T>.lastIndex:Int
+        get() = size - 1
+
     //Extension functions
     infix fun Int.add(another:Int): Int{
         return this + another
@@ -28,6 +32,10 @@ class HaveName(val name : String) : Named{
 fun <T>List<T>.lambdaWithReceiver(body: List<T>.() -> Unit){
     body()
 }
+
+var ExtensionFunctions.myVar: Int
+    get() = 32
+    set(value){myVar = value}
 
 fun main(args: Array<String>) {
     val letFunctions = ExtensionFunctions()

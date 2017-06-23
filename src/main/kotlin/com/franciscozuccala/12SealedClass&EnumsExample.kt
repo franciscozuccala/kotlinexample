@@ -11,8 +11,17 @@ object NotANumber: Expr()
 //it does not cover all
 //class Another():Expr()
 
+enum class MyEnum(val value:String){
+    A(""),B(""),C("");
+
+    fun sayHi(): String{
+        return "Hola"
+    }
+}
+
 fun main(args: Array<String>) {
 
+    MyEnum.A.sayHi()
 
 
     fun eval(expr: Expr):Double = when(expr){

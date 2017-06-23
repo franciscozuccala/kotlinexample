@@ -46,10 +46,11 @@ class CoroutinesExample {
         println(c.get())
     }
 
-    //Cada coroutine ejecuta como async me devuelve un Deferred
+    //Cada coroutine ejecuta como async me devuelve un Deferred, en vez de un job (launch)
+    //Un deferred se le puede pedir el valor que va a obtener a futuro, se obtiene mediante
+    //el methodo Deferred.await()
     //esto esta vinculado a Futures and promises https://en.wikipedia.org/wiki/Futures_and_promises
     private fun asynchronousExample(): List<Deferred<Int>> {
-        //Async
         val deferred = (1..1_000_000).map { n ->
             async (CommonPool) {
                 delay(1000)
@@ -76,13 +77,31 @@ class CoroutinesExample {
         delay(1000)
         return n
     }
+
+    fun allContextForLaunch()= runBlocking{
+        val jobs = arrayListOf<Job>()
+        jobs += launch(Unconfined) { //Se ejecuta en el thread que fue llamada
+            println(" 'Unconfined': I'm working in thread ${Thread.currentThread().name}")
+        }
+        jobs += launch(context) { // Se ejecuta en el thread del padre
+            println("    'context': I'm working in thread ${Thread.currentThread().name}")
+        }
+        jobs += launch(CommonPool) { // Se ejecuta en ForkJoinPool.commonPool (or equivalent)
+            println(" 'CommonPool': I'm working in thread ${Thread.currentThread().name}")
+        }
+        jobs += launch(newSingleThreadContext("MyOwnThread")) { // Se ejecuta en MyOwnThread
+            println("     'newSTC': I'm working in thread ${Thread.currentThread().name}")
+        }
+        //Join espera a que la coroutine termine
+        jobs.forEach { it.join() }
+    }
 }
 
 fun main(args: Array<String>) {
     val coroutines = CoroutinesExample()
     println("Start")
 
-    coroutines.executeAsynchronous()
+    coroutines.allContextForLaunch()
 
     println("Stop")
 }

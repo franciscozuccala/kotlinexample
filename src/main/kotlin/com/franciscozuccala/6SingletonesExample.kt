@@ -1,7 +1,9 @@
 class SingletonesExample {
     companion object Factory{
+
+        const val LIKE_A_CONSTANT ="Hello"
         @JvmField
-        val LIKE_AN_STATIC_VAR: String = "Static var"
+        val likeAnStaticVar: String = "Static var"
         @JvmStatic
         fun staticFunction():Unit= TODO()
     }
@@ -46,7 +48,7 @@ interface NormalInterface{
 fun main(args: Array<String>) {
     ThisIsASingletone.likeAnStaticVar
 
-    SingletonesExample.LIKE_AN_STATIC_VAR
+    SingletonesExample.LIKE_A_CONSTANT
     SingletonesExample.Factory.staticFunction()
 
     val adHoc = object {
