@@ -31,8 +31,20 @@ class HaveName(val name : String) : Named{
     }
 }
 
-fun ExtensionFunctions.hola(){
+//Function literals with receiver
 
+object MyObject{
+    val hola:String = "Se"
+}
+// I am saying that internalFunction is gonna be executed inside MyObject
+fun MyObject.myFunction(internalFunction: MyObject.() -> Unit){
+    MyObject.myFunction(internalFunction)
+}
+
+fun ExtensionFunctions.hola(){
+    MyObject.myFunction {
+        println(hola)
+    }
 }
 
 fun <T>List<T>.lambdaWithReceiver(body: (List<T>) -> Unit){
